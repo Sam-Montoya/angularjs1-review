@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='myApp'>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel='stylesheet' type='text/css' href='reset.css'>
+    <link rel='stylesheet' type='text/css' href='styles.css'>
+</head>
+
+<body ng-controller='mainCtrl'>
+
+
+        <div>
+            Search All Employees by Status: <input ng-model='allStatusFilter'>
+        </div>
+
+        <h1>Create New Employee</h1>
+
+        <div>
+            <input ng-model='newHire.first_name'>
+            <input ng-model='newHire.last_name'>
+            <input ng-model='newHire.department'>
+            <input ng-model='newHire.job_title'>
+            <input ng-model='newHire.email'>
+            <input ng-model='newHire.ssn'>
+            <button ng-click='addNewHire(newHire)'>Add Employee</button>
+        </div>
+
+        <div class='allEmployeeContainer'>
+
+        <section class='employeeBoxes'>
+
+            <h3>New Hires:</h3>
+            <input ng-model='newEmployeeInput.first_name'>
+
+            <div ng-repeat='employee in newEmployees | filter: newEmployeeInput | filter: allStatusFilter'>
+                <img src='{{employee.picture}}' alt='{{ employee.first_name }}' />
+                <h3>Name: {{ employee.first_name }} {{ employee.last_name }}</h3>
+                <p>Department: {{ employee.department }}</p>
+                <p>Job Title: {{ employee.job_title }}</p>
+                <p>Email: {{ employee.email }}</p>
+                <p>SSN: {{ employee.ssn }}</p>
+                <button ng-click='finishTraining(employee.ssn)'>Training Completed</button>
+            </div>
+        </section>
+
+        <section class='employeeBoxes'>
+
+            <h3>Employeed:</h3>
+            <input ng-model='employeeInput.first_name'>
+
+            <div ng-repeat='employee in employees | filter: employeeInput | filter: allStatusFilter'>
+                <img src='{{employee.picture}}' alt='{{ employee.first_name }}' />
+                <h3>Name: {{ employee.first_name }} {{ employee.last_name }}</h3>
+                <p>Department: {{ employee.department }}</p>
+                <p>Job Title: {{ employee.job_title }}</p>
+                <p>Email: {{ employee.email }}</p>
+                <p>SSN: {{ employee.ssn }}</p>
+                <button ng-click='finishTraining(employee.ssn)'>Training Completed</button>
+            </div>
+        </section>
+
+        <section class='employeeBoxes'>
+
+            <h3>Terminated:</h3>
+            <input ng-model='terminatedEmployeeInput.first_name'>
+
+            <div ng-repeat='employee in terminatedEmployees | filter: terminatedEmployeeInput | filter: allStatusFilter'>
+                <img src='{{employee.picture}}' alt='{{ employee.first_name }}' />
+                <h3>Name: {{ employee.first_name }} {{ employee.last_name }}</h3>
+                <p>Department: {{ employee.department }}</p>
+                <p>Job Title: {{ employee.job_title }}</p>
+                <p>Email: {{ employee.email }}</p>
+                <p>SSN: {{ employee.ssn }}</p>
+                <button ng-click='finishTraining(employee.ssn)'>Training Completed</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js" charset="utf-8"></script>
+    <script src='js/app.js'></script>
+    <script src='js/mainCtrl.js'></script>
+</body>
+
+</html>
